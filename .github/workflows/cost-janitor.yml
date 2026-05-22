@@ -1,3 +1,6 @@
+# RERUN-MARKER-2 — workflow content unchanged; this comment exists only to
+# force GitHub to schedule a new run so we can verify the SG description fix
+# in commit 3589367 actually works. Safe to delete after CI is green.
 name: Cost Janitor
 
 # Runs on every PR (the gate the spec asks for) and on pushes to main (so we
