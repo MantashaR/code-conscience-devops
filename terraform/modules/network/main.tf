@@ -72,7 +72,7 @@ resource "aws_security_group" "web" {
   vpc_id      = aws_vpc.this.id
 
   ingress {
-    description = "HTTP from anywhere (spec). Production should redirect 80 -> 443 at ALB."
+    description = "HTTP from anywhere (spec). Production should redirect 80 to 443 at the ALB."
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
