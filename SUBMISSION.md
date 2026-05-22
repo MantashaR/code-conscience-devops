@@ -1,7 +1,7 @@
 # Submission — DevOps Engineer Assignment
 
-**Candidate name:** Rishabh Tripathi
-**Email:** rishabh.tripathi@aspora.com
+**Candidate name:** Mantasha R
+**Email:** mantashafroze@gmail.com
 **Date submitted:** TBD
 **Hours spent (approximate):** TBD
 
