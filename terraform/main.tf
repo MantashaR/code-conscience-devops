@@ -79,7 +79,11 @@ resource "aws_s3_bucket_lifecycle_configuration" "logs" {
     id     = "expire-noncurrent-versions"
     status = "Enabled"
 
-    filter {}
+    # Empty filter {} crashes LocalStack 3's S3 lifecycle parser; an explicit
+    # zero-length prefix means "every object" and survives the round-trip.
+    filter {
+      prefix = ""
+    }
 
     noncurrent_version_expiration {
       noncurrent_days = 30
