@@ -1,0 +1,90 @@
+{
+  "scan_timestamp": "2026-05-22T09:31:00Z",
+  "account_id": "000000000000",
+  "region": "us-east-1",
+  "summary": {
+    "total_orphans": 5,
+    "estimated_monthly_waste_usd": 28.24
+  },
+  "findings": [
+    {
+      "resource_id": "vol-0a9c8f7e6d5b4a3c2",
+      "resource_type": "ebs_volume",
+      "reason": "unattached",
+      "age_days": 47,
+      "estimated_monthly_cost_usd": 16.0,
+      "tags": {
+        "Project": "nimbuskart",
+        "Environment": "staging",
+        "Owner": "data-team",
+        "ManagedBy": "terraform",
+        "Purpose": "intentionally-unattached-janitor-bait"
+      },
+      "suggested_action": "delete",
+      "safe_to_auto_delete": true
+    },
+    {
+      "resource_id": "vol-1f2e3d4c5b6a7980f",
+      "resource_type": "ebs_volume",
+      "reason": "unattached;missing_required_tags:Owner",
+      "age_days": 113,
+      "estimated_monthly_cost_usd": 8.0,
+      "tags": {
+        "Project": "nimbuskart",
+        "Environment": "staging",
+        "ManagedBy": "console",
+        "Owner": null
+      },
+      "suggested_action": "delete",
+      "safe_to_auto_delete": false
+    },
+    {
+      "resource_id": "i-0123456789abcdef0",
+      "resource_type": "ec2_instance",
+      "reason": "stopped_too_long",
+      "age_days": 32,
+      "estimated_monthly_cost_usd": 0.64,
+      "tags": {
+        "Project": "nimbuskart",
+        "Environment": "staging",
+        "Owner": "platform-team",
+        "ManagedBy": "terraform",
+        "Name": "perf-test-runner"
+      },
+      "suggested_action": "terminate",
+      "safe_to_auto_delete": false
+    },
+    {
+      "resource_id": "eipalloc-0a1b2c3d4e5f6a7b8",
+      "resource_type": "elastic_ip",
+      "reason": "unassociated",
+      "age_days": null,
+      "estimated_monthly_cost_usd": 3.6,
+      "tags": {
+        "Project": "nimbuskart",
+        "Environment": "prod",
+        "Owner": "platform-team",
+        "ManagedBy": "terraform",
+        "Protected": "true",
+        "Purpose": "reserved-for-bluegreen-cutover"
+      },
+      "suggested_action": "release",
+      "safe_to_auto_delete": false
+    },
+    {
+      "resource_id": "vol-0deadbeefdeadbeef",
+      "resource_type": "ebs_volume",
+      "reason": "missing_required_tags:Project,Owner",
+      "age_days": null,
+      "estimated_monthly_cost_usd": 0.0,
+      "tags": {
+        "Environment": "dev",
+        "ManagedBy": "manual",
+        "Project": null,
+        "Owner": null
+      },
+      "suggested_action": "tag",
+      "safe_to_auto_delete": false
+    }
+  ]
+}

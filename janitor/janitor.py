@@ -344,7 +344,7 @@ def render_markdown(report: dict) -> str:
                 rid=f["resource_id"],
                 rtype=f["resource_type"],
                 reason=f["reason"],
-                age=f["age_days"] if f["age_days"] is not None else "–",
+                age=f["age_days"] if f["age_days"] is not None else "n/a",
                 cost=f["estimated_monthly_cost_usd"],
                 action=f["suggested_action"],
                 safe="yes" if f["safe_to_auto_delete"] else "no",
@@ -356,8 +356,8 @@ def render_markdown(report: dict) -> str:
 def write_outputs(report: dict, output_dir: str) -> Path:
     out = Path(output_dir)
     out.mkdir(parents=True, exist_ok=True)
-    (out / "report.json").write_text(json.dumps(report, indent=2))
-    (out / "report.md").write_text(render_markdown(report))
+    (out / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    (out / "report.md").write_text(render_markdown(report), encoding="utf-8")
     return out
 
 
