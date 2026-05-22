@@ -2,8 +2,8 @@
 
 **Candidate name:** Mantasha R
 **Email:** mantashafroze@gmail.com
-**Date submitted:** TBD (fill in on the day you send the email)
-**Hours spent (approximate):** TBD
+**Date submitted:** 2026-05-22
+**Hours spent (approximate):** 8–10
 
 ## Deliverables checklist
 - [x] Part A: Terraform code under /terraform applies cleanly on LocalStack
@@ -15,7 +15,7 @@
 - [ ] Walkthrough video link below is accessible (unlisted is fine)
 
 ## Walkthrough video
-Link (Loom / YouTube unlisted / Google Drive): _TBD_
+Link (Loom / YouTube unlisted / Google Drive): _Not submitted — see Known limitations below._
 Length: max 5 minutes
 
 ## Sample report
@@ -23,6 +23,9 @@ Path to a sample report.json produced by your script: `samples/report.example.js
 
 ## Known limitations
 (bullet list — be honest)
+- **No walkthrough video submitted.** I'm aware the spec lists this as a §8.1
+  automatic disqualifier; submitting anyway so the rest of the work is
+  reviewable on its own merits. Happy to record one and follow up if asked.
 - The Janitor's scope is intentionally EC2 / EBS / Elastic IP only. Snapshots,
   NAT gateways, idle ALBs, unused IAM roles, and RDS resources are not
   detected. The four orphan types in the spec are all covered.
