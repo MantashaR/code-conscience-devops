@@ -97,9 +97,14 @@ jobs:
         # var.localstack_endpoint, so plain `terraform` works against LocalStack
         # without the tflocal wrapper (which was double-configuring endpoints
         # via env vars and conflicting with the provider's endpoints {} block).
+        #
+        # enable_lifecycle=false because the AWS provider 5.x consistency-check
+        # wait on aws_s3_bucket_lifecycle_configuration hangs forever against
+        # LocalStack 3 (3-min provider-side timeout). Documented in
+        # terraform/variables.tf and README "Decisions & deviations".
         run: |
           terraform init
-          terraform apply -auto-approve
+          terraform apply -auto-approve -var="enable_lifecycle=false"
 
       - name: Janitor unit tests
         working-directory: janitor

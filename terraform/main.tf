@@ -73,14 +73,17 @@ resource "aws_s3_bucket_versioning" "logs" {
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "logs" {
+  # Gated on var.enable_lifecycle because the AWS provider 5.x's
+  # consistency-check wait on this resource hangs against LocalStack 3.
+  # See variables.tf for the full reasoning.
+  count = var.enable_lifecycle ? 1 : 0
+
   bucket = aws_s3_bucket.logs.id
 
   rule {
     id     = "expire-noncurrent-versions"
     status = "Enabled"
 
-    # Empty filter {} crashes LocalStack 3's S3 lifecycle parser; an explicit
-    # zero-length prefix means "every object" and survives the round-trip.
     filter {
       prefix = ""
     }

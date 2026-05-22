@@ -92,3 +92,18 @@ variable "orphan_ebs_size_gb" {
   type        = number
   default     = 20
 }
+
+variable "enable_lifecycle" {
+  description = <<-EOT
+    Whether to create the S3 bucket lifecycle configuration.
+
+    Default: true. Set to false ONLY when targeting LocalStack in CI — the
+    AWS provider 5.x waits on a consistency check (polling
+    GetBucketLifecycleConfiguration until the response matches what was
+    just put) that LocalStack 3's S3 emulation never satisfies, causing
+    terraform apply to hang for 3 minutes and time out. Production
+    deployments (real AWS) leave this as true.
+  EOT
+  type        = bool
+  default     = true
+}
