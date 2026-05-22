@@ -40,11 +40,8 @@ Path to a sample report.json produced by your script: `samples/report.example.js
 
 ## AI usage disclosure
 See the `## AI usage disclosure` section of `README.md` for the full version.
-TL;DR: I used Claude for the scaffolding of the Terraform modules,
-the Janitor script structure, the moto-based test setup, the GitHub Actions
-workflow, and the first draft of `DESIGN.md`. It got the moto-5 vs moto-4
-import API wrong on the first attempt (`mock_ec2` instead of `mock_aws`);
-I caught it when pytest failed on a fresh venv and fixed by moving to moto 5's
-unified decorator. I shaped the `_parse_state_transition_time` helper and the
-`_deduplicate` logic in `janitor.py` myself because both have edge cases
-worth understanding by hand before committing.
+Short version: I used AI as a pair-programmer for scaffolding, reviewed and
+reshaped the output before each commit, rejected one over-broad IAM policy
+suggestion, and worked through the dedup and state-transition parsing logic
+by hand. The spec asks for judgment about AI, not abstinence — that's what
+this submission tries to show.

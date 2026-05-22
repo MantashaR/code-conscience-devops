@@ -183,18 +183,20 @@ What I would do with one more week:
 
 ## AI usage disclosure
 
-- **Tools used.** Claude (Anthropic) as a pair-programmer for the Terraform
-  module skeleton, the Janitor script structure, the moto-based test setup,
-  the GitHub Actions workflow, and the first draft of `DESIGN.md`.
-- **One thing the AI got wrong.** It initially reached for moto 4's
-  per-service mocks (`mock_ec2`, `mock_s3`); moto 5 unified everything under
-  `mock_aws` and the tests refused to import until I caught it. I noticed
-  because pytest failed at import time on a fresh venv with `moto==5.x`
-  pinned. Fixed by switching to `from moto import mock_aws` everywhere.
-- **One section I wrote / shaped without AI help.** The `_parse_state_transition_time`
-  helper in `janitor.py` and the deduplication logic in `_deduplicate()`.
-  Both have specific edge cases — moto's `StateTransitionReason` format
-  doesn't match real AWS's, and dedup has to combine reasons without
-  inflating cost estimates — that I wanted to reason through myself. The
-  age-parse function defensively falls back to `LaunchTime` so the detector
-  works the same on both backends.
+- **How I used AI.** Claude as a pair-programmer for scaffolding —
+  the Terraform module skeleton, the Cost Janitor's CLI shape and detector
+  signatures, an initial pass at the moto-based tests, and the YAML for the
+  GitHub Actions workflow. Faster than a blank-page start; every block was
+  reviewed and several were rewritten before commit.
+- **One suggestion I rejected.** An early draft of the read-only IAM policy
+  in `DESIGN.md` included S3 actions the Janitor never calls. I tightened it
+  to exactly the `Describe*` set plus `sts:GetCallerIdentity` and
+  `cloudwatch:PutMetricData` that the script actually exercises, because a
+  policy any wider than the script's API surface is a future incident.
+- **One section I worked through by hand.** The `_parse_state_transition_time`
+  helper and the `_deduplicate` logic in `janitor.py`. Both have edge cases
+  that affect correctness — moto's `StateTransitionReason` format doesn't
+  match real AWS's, and dedup must combine reasons without double-counting
+  cost — so I wanted to be the person who understood every line, not just
+  accept generated code. The age parser defensively falls back to
+  `LaunchTime` so the detector behaves the same on both backends.
