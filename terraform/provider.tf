@@ -28,7 +28,6 @@ provider "aws" {
       s3  = endpoints.value
       iam = endpoints.value
       sts = endpoints.value
-      ebs = endpoints.value
     }
   }
 }
