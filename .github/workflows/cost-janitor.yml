@@ -60,10 +60,9 @@ jobs:
           terraform_version: 1.9.8
           terraform_wrapper: false
 
-      - name: Install Python deps + tflocal
+      - name: Install Python deps
         run: |
           pip install --quiet -r janitor/requirements-dev.txt
-          pip install --quiet terraform-local
 
       - name: Wait for LocalStack to be ready
         run: |
@@ -91,9 +90,13 @@ jobs:
 
       - name: terraform apply (LocalStack)
         working-directory: terraform
+        # The provider.tf in this repo already routes every AWS service call to
+        # var.localstack_endpoint, so plain `terraform` works against LocalStack
+        # without the tflocal wrapper (which was double-configuring endpoints
+        # via env vars and conflicting with the provider's endpoints {} block).
         run: |
-          tflocal init
-          tflocal apply -auto-approve
+          terraform init
+          terraform apply -auto-approve
 
       - name: Janitor unit tests
         working-directory: janitor
