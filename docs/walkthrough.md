@@ -2,6 +2,7 @@
 
 **Link:** _TBD — paste the unlisted YouTube / Loom URL here before submitting._
 **Length:** max 5 minutes (per spec §6.4).
+**Recording status:** TBD.
 
 ## What the video covers
 
